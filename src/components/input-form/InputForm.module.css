@@ -1,0 +1,43 @@
+.form {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.input[name="title"] {
+	width: 300px;
+	padding: 10px 15px;
+	font-size: 16px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	outline: none;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input[name="title"]:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.button {
+	padding: 10px 15px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #007bff;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.2s, transform 0.2s;
+}
+
+.button:hover {
+	background-color: #0056b3;
+	transform: translateY(-2px);
+}
+
+.button:disabled {
+	background-color: #ccc;
+	cursor: not-allowed;
+	transform: none;
+}

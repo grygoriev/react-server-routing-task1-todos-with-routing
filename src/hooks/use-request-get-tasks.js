@@ -7,7 +7,7 @@ export const useRequestGetTodos = (refreshTodosFlag) => {
 	useEffect(() => {
 		setIsLoading(true);
 
-		fetch('https://jsonplaceholder.typicode.com/todos')
+		fetch('http://localhost:3005/todos')
 			.then((loadedData) => loadedData.json())
 			.then((loadedTasks) => {
 				setTodos(loadedTasks);
