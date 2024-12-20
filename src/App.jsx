@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './App.module.css';
 import {
 	useRequestGetTodos,
 	useRequestAddTask,
 	useRequestDeleteTodo,
 	useRequestUpdateTodo,
+	useDebounce,
 } from './hooks';
 import { TodoItem } from './components/todo-item/TodoItem.jsx';
 import { InputForm } from './components/input-form/InputForm.jsx';
@@ -41,13 +42,19 @@ export const App = () => {
 		requestUpdateTodo(id, newTitle);
 	};
 
+	const debouncedSetSearchValue = useDebounce(searchInput, 500);
+
 	const searchedTodos = todos.filter(({ title }) =>
-		title.toLowerCase().includes(searchInput.trim().toLowerCase()),
+		title.toLowerCase().includes(debouncedSetSearchValue.trim().toLowerCase()),
 	);
 
 	const sortedTodos = isSorted
 		? searchedTodos.sort((a, b) => a.title.localeCompare(b.title))
 		: [...searchedTodos];
+
+	const handleValueChange = (event) => {
+		setSearchInput(event.target.value);
+	};
 
 	return (
 		<div className={styles.app}>
@@ -61,7 +68,7 @@ export const App = () => {
 								type="text"
 								value={searchInput}
 								className={styles.searchInput}
-								onChange={({ target }) => setSearchInput(target.value)}
+								onChange={handleValueChange}
 							/>
 							<button
 								onClick={() => setIsSorted(!isSorted)}
