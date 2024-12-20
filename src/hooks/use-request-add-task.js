@@ -1,30 +1,23 @@
 import { useState } from 'react';
+import { ref, push } from 'firebase/database';
+import { db } from '../firebase';
 
-const ULR = 'http://localhost:3005/todos';
-
-export const useRequestAddTask = (refreshProd, title, setTitle) => {
+export const useRequestAddTask = (title, setInputTitle) => {
 	const [isCreating, setIsCreating] = useState(true);
 
 	const requestAddTask = () => {
 		setIsCreating(true);
 
-		fetch(ULR, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json; charset=UTF-8',
-			},
-			body: JSON.stringify({
-				title: title,
-			}),
+		const todosDbRef = ref(db, 'todos');
+
+		push(todosDbRef, {
+			title: title
 		})
-			.then((rawResponse) => rawResponse.json())
 			.then((response) => {
-				console.log('Ответ сервера ', response);
-				refreshProd();
+				console.log('ответ сервера', response);
+				setInputTitle('');
 			})
-			.finally(() => {
-				setTitle('');
-			});
+			.finally(() => setIsCreating(false));
 	};
 
 	return { isCreating, requestAddTask, setIsCreating };

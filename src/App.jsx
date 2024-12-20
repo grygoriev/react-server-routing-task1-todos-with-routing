@@ -11,21 +11,17 @@ import { TodoItem } from './components/todo-item/TodoItem.jsx';
 import { InputForm } from './components/input-form/InputForm.jsx';
 
 export const App = () => {
-	const [refreshTodosFlag, setRefreshTodosFlag] = useState(false);
 	const [inputTitle, setInputTitle] = useState('');
 	const [searchInput, setSearchInput] = useState('');
 	const [isSorted, setIsSorted] = useState(false);
 
-	const refreshTodos = () => setRefreshTodosFlag(!refreshTodosFlag);
-
-	const { isLoading, todos } = useRequestGetTodos(refreshTodosFlag);
+	const { isLoading, todos } = useRequestGetTodos();
 	const { isCreating, requestAddTask, setIsCreating } = useRequestAddTask(
-		refreshTodos,
 		inputTitle,
 		setInputTitle,
 	);
-	const { isDeleting, requestDeleteTodo } = useRequestDeleteTodo(refreshTodos);
-	const { isUpdating, requestUpdateTodo } = useRequestUpdateTodo(refreshTodos);
+	const { isDeleting, requestDeleteTodo } = useRequestDeleteTodo();
+	const { isUpdating, requestUpdateTodo } = useRequestUpdateTodo();
 
 	const onChangeHandle = (value) => {
 		setInputTitle(value);
@@ -44,7 +40,7 @@ export const App = () => {
 
 	const debouncedSetSearchValue = useDebounce(searchInput, 500);
 
-	const searchedTodos = todos.filter(({ title }) =>
+	const searchedTodos = Object.entries(todos).map(([id, value]) => ({id: id, title: value.title})).filter(({title}) =>
 		title.toLowerCase().includes(debouncedSetSearchValue.trim().toLowerCase()),
 	);
 
@@ -62,7 +58,7 @@ export const App = () => {
 				<div className={styles.loader}></div>
 			) : (
 				<div>
-					{todos.length > 0 ? (
+					{Object.entries(todos).length > 0 ? (
 						<>
 							<input
 								type="text"

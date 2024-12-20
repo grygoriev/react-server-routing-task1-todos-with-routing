@@ -1,19 +1,17 @@
 import { useState } from 'react';
+import { ref, remove } from 'firebase/database';
+import { db } from '../firebase';
 
-const ULR = 'http://localhost:3005/todos';
-
-export const useRequestDeleteTodo = (refreshTodos) => {
+export const useRequestDeleteTodo = () => {
 	const [isDeleting, setIsDeleting] = useState(false);
 	const requestDeleteTodo = (id) => {
 		setIsDeleting(true);
 
-		fetch(`${ULR}/${id}`, {
-			method: 'DELETE',
-		})
-			.then((rawResponse) => rawResponse.json())
+		const todosDbRef = ref(db, `todos/${id}`);
+
+		remove(todosDbRef)
 			.then((response) => {
-				console.log('Ответ сервера', response);
-				refreshTodos();
+				console.log('ответ сервера', response);
 			})
 			.finally(() => setIsDeleting(false));
 	};

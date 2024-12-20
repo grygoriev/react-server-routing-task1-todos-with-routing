@@ -1,26 +1,20 @@
 import { useState } from 'react';
+import { ref, set } from 'firebase/database';
+import { db } from '../firebase';
 
-const ULR = 'http://localhost:3005/todos';
-
-export const useRequestUpdateTodo = (refreshTodos) => {
+export const useRequestUpdateTodo = () => {
 	const [isUpdating, setIsUpdating] = useState(false);
 
 	const requestUpdateTodo = (id, title) => {
 		setIsUpdating(true);
 
-		fetch(`${ULR}/${id}`, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json; charset=UTF-8',
-			},
-			body: JSON.stringify({
-				title: title
-			}),
+		const todosDbRef = ref(db, `todos/${id}`);
+
+		set(todosDbRef, {
+			title: title
 		})
-			.then((rawResponse) => rawResponse.json())
 			.then((response) => {
-				console.log('Ответ сервера', response);
-				refreshTodos();
+				console.log('ответ сервера', response);
 			})
 			.finally(() => setIsUpdating(false));
 	};
