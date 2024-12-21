@@ -1,0 +1,118 @@
+/* Контейнер страницы */
+.todoContainer {
+	max-width: 600px;
+	margin: 20px auto;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	background-color: #f9f9f9;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	font-family: Arial, sans-serif;
+}
+
+/* Ссылка "Назад" как кнопка */
+.backLink {
+	display: inline-block;
+	margin-bottom: 20px;
+	padding: 10px 20px;
+	text-decoration: none;
+	font-size: 14px;
+	color: #fff;
+	background-color: #007bff;
+	border-radius: 6px;
+	text-align: center;
+	transition: background-color 0.2s ease, transform 0.2s ease;
+	box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+.backLink:hover {
+	background-color: #0056b3;
+	transform: translateY(-2px);
+}
+
+.backLink:active {
+	background-color: #003f7f;
+	transform: translateY(0);
+}
+
+.backLinkContainer {
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+/* Заголовок задачи */
+.todoTitle {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+/* Кнопки управления */
+.todoActions {
+	margin-top: 20px;
+	display: flex;
+	gap: 10px;
+}
+
+/* Остальные кнопки */
+.saveButton,
+.cancelButton,
+.editButton,
+.deleteButton {
+	padding: 8px 16px;
+	font-size: 14px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s, transform 0.2s;
+}
+
+.saveButton {
+	background-color: #28a745;
+	color: #fff;
+}
+
+.cancelButton {
+	background-color: #6c757d;
+	color: #fff;
+}
+
+.editButton {
+	background-color: #ffc107;
+	color: #fff;
+}
+
+.deleteButton {
+	background-color: #dc3545;
+	color: #fff;
+}
+
+.saveButton:hover,
+.cancelButton:hover,
+.editButton:hover,
+.deleteButton:hover {
+	transform: translateY(-2px);
+}
+
+.saveButton:active,
+.cancelButton:active,
+.editButton:active,
+.deleteButton:active {
+	transform: translateY(0);
+}
+
+/* Поле ввода */
+.editInput {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	margin-bottom: 20px;
+	resize: vertical; /* Пользователь сможет изменять высоту */
+	min-height: 50px; /* Минимальная высота */
+	max-height: 200px; /* Максимальная высота */
+	line-height: 1.5;
+	background-color: #fff;
+}

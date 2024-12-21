@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const ULR = 'http://localhost:3005/todos';
 
-export const useRequestUpdateTodo = (refreshTodos) => {
+export const useRequestUpdateTodo = (refreshTodo) => {
 	const [isUpdating, setIsUpdating] = useState(false);
 
 	const requestUpdateTodo = (id, title) => {
@@ -20,7 +20,7 @@ export const useRequestUpdateTodo = (refreshTodos) => {
 			.then((rawResponse) => rawResponse.json())
 			.then((response) => {
 				console.log('Ответ сервера', response);
-				refreshTodos();
+				refreshTodo();
 			})
 			.finally(() => setIsUpdating(false));
 	};

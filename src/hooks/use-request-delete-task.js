@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const ULR = 'http://localhost:3005/todos';
 
-export const useRequestDeleteTodo = (refreshTodos) => {
+export const useRequestDeleteTodo = (navigate) => {
 	const [isDeleting, setIsDeleting] = useState(false);
 	const requestDeleteTodo = (id) => {
 		setIsDeleting(true);
@@ -13,7 +13,7 @@ export const useRequestDeleteTodo = (refreshTodos) => {
 			.then((rawResponse) => rawResponse.json())
 			.then((response) => {
 				console.log('Ответ сервера', response);
-				refreshTodos();
+				navigate('/');
 			})
 			.finally(() => setIsDeleting(false));
 	};

@@ -1,0 +1,64 @@
+/* Контейнер страницы */
+.container {
+	display: flex;
+	flex-direction: column; /* Расположение элементов в колонку */
+	align-items: center;
+	justify-content: center;
+	height: 100vh; /* Полная высота экрана */
+	background-color: #f9f9f9;
+	font-family: 'Arial', sans-serif;
+	padding: 20px;
+	text-align: center;
+}
+
+/* Контент ограничен по ширине и расположен в колонку */
+.content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 500px;
+	width: 100%;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border: 1px solid #ddd;
+	gap: 20px; /* Расстояние между элементами */
+}
+
+/* Код ошибки */
+.errorCode {
+	font-size: 72px;
+	font-weight: bold;
+	color: #ff6b6b;
+	text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Сообщение об ошибке */
+.message {
+	font-size: 18px;
+	color: #555;
+}
+
+/* Ссылка на главную */
+.homeLink {
+	display: inline-block;
+	padding: 12px 24px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #007bff;
+	border-radius: 6px;
+	text-decoration: none;
+	transition: background-color 0.2s ease, transform 0.2s ease;
+	box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+.homeLink:hover {
+	background-color: #0056b3;
+	transform: translateY(-2px);
+}
+
+.homeLink:active {
+	background-color: #003f7f;
+	transform: translateY(0);
+}

@@ -1,0 +1,72 @@
+.todos {
+	text-align: center;
+}
+
+.todosElements {
+	list-style: decimal;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-width: 500px;
+	margin: 20px auto;
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Поле поиска */
+.searchInput {
+	width: 300px;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	margin: 10px 0;
+	outline: none;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchInput:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Кнопка сортировки */
+.sortButton {
+	padding: 8px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	background-color: #f9f9f9;
+	color: #333;
+	cursor: pointer;
+	margin-left: 10px;
+	transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.sortButton:hover {
+	background-color: #e6e6e6;
+	transform: translateY(-1px);
+}
+
+.sortButton:active {
+	background-color: #ddd;
+	transform: translateY(0);
+}
+
+/* Выделение кнопки, если isSorted=true */
+.sortButtonActive {
+	background-color: #007bff;
+	color: #fff;
+	border-color: #007bff;
+	box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+	transform: translateY(0);
+}
+
+.sortButtonActive:hover {
+	background-color: #0056b3;
+	border-color: #0056b3;
+	transform: translateY(-1px);
+}

@@ -1,71 +1,18 @@
 import styles from './TodoItem.module.css';
-import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
-export const TodoItem = ({ id, title, onDelete, onSave, isUpdating, isDeleting }) => {
-	const [editedTitle, setEditedTitle] = useState(title);
-	const [isEditing, setIsEditing] = useState(false);
+const MAX_TODO_LEN = 45;
 
-	const handleSave = () => {
-		setIsEditing(false);
-		onSave(id, editedTitle);
-	};
-
-	const handleCancel = () => {
-		setIsEditing(false);
-		setEditedTitle(title);
-	};
-
-	const handleEdit = () => {
-		setIsEditing(true);
-	};
-
-	const isChanging = isUpdating || isUpdating;
+export const TodoItem = ({ id, title }) => {
+	const shortTitle =
+		title.length > MAX_TODO_LEN ? `${title.slice(0, MAX_TODO_LEN)}...` : title;
 
 	return (
 		<li className={styles.todoElement} id={id}>
-			{isEditing ? (
-				<>
-					<input
-						className={styles.editInput}
-						value={editedTitle}
-						onChange={(e) => setEditedTitle(e.target.value)}
-					/>
-					<button
-						className={styles.saveButton}
-						onClick={handleSave}
-						disabled={isChanging}
-					>
-						Сохранить
-					</button>
-					<button
-						className={styles.cancelButton}
-						onClick={handleCancel}
-						disabled={isChanging}
-					>
-						Отмена
-					</button>
-				</>
-			) : (
-				<>
-					<span>{title}</span>
-					<div>
-						<button
-							className={styles.editButton}
-							onClick={handleEdit}
-							disabled={isChanging}
-						>
-							Изменить
-						</button>
-						<button
-							className={styles.deleteButton}
-							onClick={() => onDelete(id)}
-							disabled={isChanging}
-						>
-							Удалить
-						</button>
-					</div>
-				</>
-			)}
+			<span>
+				{' '}
+				<NavLink to={`task/${id}`}>{shortTitle}</NavLink>{' '}
+			</span>
 		</li>
 	);
 };
